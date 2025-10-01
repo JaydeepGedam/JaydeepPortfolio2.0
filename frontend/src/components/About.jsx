@@ -35,7 +35,7 @@ const About = () => {
   const values = [
     {
       icon: Target,
-      title: 'Innovation First",
+      title: 'Innovation First',
       description: "I believe in creating solutions that don't just work, but make a real difference in people's lives."
     },
     {
