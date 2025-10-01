@@ -13,7 +13,7 @@ const Skills = () => {
 
   const categories = [
     { id: 'technical', label: 'Technical Skills', icon: Code },
-    { id: 'tools', label: 'Tools & Software', icon: Tool }
+    { id: 'tools', label: 'Tools & Software', icon: Wrench }
   ];
 
   useEffect(() => {
