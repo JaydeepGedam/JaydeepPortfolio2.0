@@ -80,7 +80,7 @@ const Skills = () => {
       case 'Frontend': return <Code className="w-4 h-4" />;
       case 'Programming': return <Database className="w-4 h-4" />;
       case 'Design': return <Palette className="w-4 h-4" />;
-      default: return <Tool className="w-4 h-4" />;
+      default: return <Wrench className="w-4 h-4" />;
     }
   };
 
