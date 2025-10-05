@@ -10,11 +10,13 @@ import Achievements from "./components/Achievements";
 import Contact from "./components/Contact";
 import Chatbot from "./components/Chatbot";
 import Footer from "./components/Footer";
+import MagneticCursor from "./components/MagneticCursor";
 import { Toaster } from "./components/ui/toaster";
 
 const Portfolio = () => {
   return (
     <div className="min-h-screen bg-black">
+      <MagneticCursor />
       <Header />
       <Hero />
       <About />
