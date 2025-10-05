@@ -306,40 +306,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            {/* Resume download */}
-            <Card className="bg-gradient-to-r from-green-400/10 to-yellow-400/10 border-green-400/30">
-              <CardContent className="p-6 text-center">
-                <h3 className="text-white font-semibold mb-2">Download Resume</h3>
-                <p className="text-gray-300 text-sm mb-4">
-                  Get the complete overview of my experience and projects
-                </p>
-                <Button
-                  onClick={() => window.open(personalInfo.resume, '_blank')}
-                  className="w-full bg-gradient-to-r from-green-400 to-yellow-400 text-black hover:from-green-500 hover:to-yellow-500 transition-all duration-300"
-                >
-                  <Download className="w-4 h-4 mr-2" />
-                  Download Resume
-                </Button>
-              </CardContent>
-            </Card>
 
-            {/* Availability status */}
-            <Card className="bg-black/50 border-gray-700">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
-                  <span className="text-white font-medium">Available for opportunities</span>
-                </div>
-                <p className="text-gray-300 text-sm">
-                  Open to frontend development roles, innovative projects, and collaboration opportunities.
-                </p>
-                <div className="flex gap-2 mt-4">
-                  <Badge className="bg-green-400 text-black text-xs">Frontend Dev</Badge>
-                  <Badge className="bg-blue-400 text-black text-xs">Innovation</Badge>
-                  <Badge className="bg-yellow-400 text-black text-xs">Collaboration</Badge>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>

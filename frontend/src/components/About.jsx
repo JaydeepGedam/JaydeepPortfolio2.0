@@ -32,28 +32,7 @@ const About = () => {
     { id: 'experience', label: 'Experience', icon: Briefcase }
   ];
 
-  const values = [
-    {
-      icon: Target,
-      title: 'Innovation First',
-      description: "I believe in creating solutions that don't just work, but make a real difference in people's lives."
-    },
-    {
-      icon: Code,
-      title: "Clean Code",
-      description: "Writing maintainable, scalable, and efficient code is not just a practice, it's a passion."
-    },
-    {
-      icon: Heart,
-      title: "Accessibility Focus",
-      description: "Technology should be inclusive. My patent project Nayaan embodies this core belief."
-    },
-    {
-      icon: Lightbulb,
-      title: "Continuous Learning",
-      description: "In the ever-evolving tech landscape, I stay curious and keep pushing boundaries."
-    }
-  ];
+
 
   return (
     <section id="about" ref={sectionRef} className="py-20 bg-black relative overflow-hidden">
@@ -92,9 +71,11 @@ const About = () => {
               <Card className="bg-gray-900/50 border-gray-700">
                 <CardContent className="p-8 text-center">
                   <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-400 to-yellow-400 p-1">
-                    <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center">
-                      <span className="text-4xl font-bold text-white">JG</span>
-                    </div>
+                    <img 
+                      src="/profile-image.jpg" 
+                      alt="Jaydeep Nitin Gedam" 
+                      className="w-full h-full rounded-full object-cover"
+                    />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">
                     Jaydeep Nitin Gedam
@@ -164,27 +145,7 @@ const About = () => {
                     </CardContent>
                   </Card>
 
-                  {/* Values */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {values.map((value, index) => {
-                      const Icon = value.icon;
-                      return (
-                        <Card key={index} className="bg-gray-900/30 border-gray-700 hover:border-green-400/50 transition-all duration-300">
-                          <CardContent className="p-6">
-                            <div className="flex items-start gap-4">
-                              <div className="p-3 bg-gradient-to-br from-green-400 to-yellow-400 rounded-lg">
-                                <Icon className="w-6 h-6 text-black" />
-                              </div>
-                              <div>
-                                <h4 className="text-lg font-semibold text-white mb-2">{value.title}</h4>
-                                <p className="text-gray-300 text-sm leading-relaxed">{value.description}</p>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      );
-                    })}
-                  </div>
+
                 </div>
               )}
 

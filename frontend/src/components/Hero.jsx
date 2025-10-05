@@ -6,6 +6,13 @@ import { personalInfo } from '../mock/portfolioData';
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  
+  const titles = [
+    '< Frontend Developer />',
+    '< Prompt Engineer />',
+    '< AI Engineer />'
+  ];
 
   useEffect(() => {
     setIsVisible(true);
@@ -15,8 +22,17 @@ const Hero = () => {
     };
     
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    
+    // Title carousel effect
+    const titleInterval = setInterval(() => {
+      setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+    }, 3000);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      clearInterval(titleInterval);
+    };
+  }, [titles.length]);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -83,8 +99,8 @@ const Hero = () => {
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-light tracking-wide">
-              {personalInfo.title}
+            <p className="text-lg md:text-xl lg:text-2xl text-white font-mono tracking-wide transition-all duration-500">
+              {titles[currentTitleIndex]}
             </p>
           </div>
 

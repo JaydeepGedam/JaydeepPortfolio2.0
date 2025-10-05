@@ -49,11 +49,11 @@ const Achievements = () => {
 
   const getBorderColor = (type) => {
     switch (type.toLowerCase()) {
-      case 'patent': return 'border-yellow-400/50';
-      case 'publication': return 'border-blue-400/50';
-      case 'competition': return 'border-green-400/50';
-      case 'exhibition': return 'border-pink-400/50';
-      default: return 'border-gray-400/50';
+      case 'patent': return 'border-yellow-400';
+      case 'publication': return 'border-blue-400';
+      case 'competition': return 'border-green-400';
+      case 'exhibition': return 'border-pink-400';
+      default: return 'border-gray-400';
     }
   };
 
@@ -105,7 +105,7 @@ const Achievements = () => {
                     <div className="text-right">
                       <Badge 
                         variant="outline" 
-                        className={`${getBorderColor(achievement.type).replace('border-', 'border-').replace('/50', '')} text-xs`}
+                        className={`${getBorderColor(achievement.type)} text-xs text-white bg-gray-800/80`}
                       >
                         {achievement.type}
                       </Badge>
@@ -143,35 +143,7 @@ const Achievements = () => {
           ))}
         </div>
 
-        {/* Stats section */}
-        <div 
-          className={`transform transition-all duration-1000 delay-600 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}
-        >
-          <Card className="bg-gradient-to-r from-gray-900/80 to-black/80 border-green-400/30">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                  <div className="text-3xl font-bold text-yellow-400 mb-2">1</div>
-                  <div className="text-gray-300 text-sm">Patent Published</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-blue-400 mb-2">1</div>
-                  <div className="text-gray-300 text-sm">Research Paper</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-green-400 mb-2">3</div>
-                  <div className="text-gray-300 text-sm">Competition Wins</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-pink-400 mb-2">1</div>
-                  <div className="text-gray-300 text-sm">Exhibition Selection</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+
 
         {/* Featured achievement */}
         <div 
@@ -202,16 +174,16 @@ const Achievements = () => {
                 demonstrating how technology can create meaningful impact in people's lives.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Badge className="bg-yellow-400 text-black">
+                <Badge className="bg-yellow-400 text-black hover:bg-yellow-500 hover:text-black">
                   Patent Holder
                 </Badge>
-                <Badge className="bg-blue-400 text-black">
+                <Badge className="bg-blue-400 text-black hover:bg-blue-500 hover:text-black">
                   Springer Publication
                 </Badge>
-                <Badge className="bg-green-400 text-black">
+                <Badge className="bg-green-400 text-black hover:bg-green-500 hover:text-black">
                   BharatCon24 Runner-up
                 </Badge>
-                <Badge className="bg-purple-400 text-black">
+                <Badge className="bg-purple-400 text-black hover:bg-purple-500 hover:text-black">
                   CIIA-3 Top 100
                 </Badge>
               </div>
@@ -234,7 +206,7 @@ const Achievements = () => {
                         {selectedAchievement.title}
                       </CardTitle>
                       <div className="flex items-center gap-4 mt-2">
-                        <Badge variant="outline" className={getBorderColor(selectedAchievement.type)}>
+                        <Badge variant="outline" className={`${getBorderColor(selectedAchievement.type)} text-white bg-gray-800/80`}>
                           {selectedAchievement.type}
                         </Badge>
                         <span className="text-gray-400 text-sm flex items-center gap-1">

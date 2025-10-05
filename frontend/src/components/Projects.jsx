@@ -80,49 +80,32 @@ const Projects = () => {
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
               }`}
             >
-              <Card className={`bg-black/50 border-gray-700 hover:border-green-400/50 transition-all duration-300 overflow-hidden group ${
+              <Card className={`bg-black/50 border-gray-700 hover:border-green-400/50 transition-all duration-300 group ${
                 project.featured ? 'ring-2 ring-green-400/30' : ''
               }`}>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Project image */}
-                  <div className="relative overflow-hidden">
-                    <img 
-                      src={project.images[0]} 
-                      alt={project.title}
-                      className="w-full h-64 md:h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    
-                    {/* Status badge */}
-                    <div className="absolute top-4 left-4">
-                      <Badge className={`${getStatusColor(project.status)} text-white`}>
-                        {project.status}
-                      </Badge>
-                    </div>
-                    
-                    {/* Featured badge */}
-                    {project.featured && (
-                      <div className="absolute top-4 right-4">
-                        <Badge className="bg-gradient-to-r from-yellow-400 to-green-400 text-black">
-                          <Award className="w-3 h-3 mr-1" />
-                          Featured
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Project content */}
-                  <CardContent className="p-6 md:p-8">
-                    <div className="flex items-center gap-2 mb-3">
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
                       {getCategoryIcon(project.category)}
                       <Badge variant="outline" className="border-green-400 text-green-400">
                         {project.category}
                       </Badge>
                     </div>
-                    
-                    <CardTitle className="text-2xl md:text-3xl text-white mb-2">
-                      {project.title}
-                    </CardTitle>
+                    <div className="flex gap-2">
+                      <Badge className={`${getStatusColor(project.status)} text-white`}>
+                        {project.status}
+                      </Badge>
+                      {project.featured && (
+                        <Badge className="bg-gradient-to-r from-yellow-400 to-green-400 text-black">
+                          <Award className="w-3 h-3 mr-1" />
+                          Featured
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                  <CardTitle className="text-2xl md:text-3xl text-white mb-2">
+                    {project.title}
+                  </CardTitle>
                     
                     <CardDescription className="text-green-400 font-medium mb-4">
                       {project.subtitle}
@@ -137,7 +120,7 @@ const Projects = () => {
                       <h4 className="text-white font-semibold mb-3">Technologies:</h4>
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech) => (
-                          <Badge key={tech} variant="secondary" className="bg-gray-800 text-gray-300">
+                          <Badge key={tech} variant="secondary" className="bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white">
                             {tech}
                           </Badge>
                         ))}
@@ -176,9 +159,8 @@ const Projects = () => {
                           <ExternalLink className="ml-2 w-4 h-4" />
                         </Button>
                       )}
-                    </div>
-                  </CardContent>
-                </div>
+                  </div>
+                </CardContent>
               </Card>
             </div>
           ))}
@@ -217,7 +199,7 @@ const Projects = () => {
                     <h4 className="text-white font-semibold mb-3">Technologies Used:</h4>
                     <div className="flex flex-wrap gap-2">
                       {selectedProject.technologies.map((tech) => (
-                        <Badge key={tech} className="bg-gray-800 text-gray-300">
+                        <Badge key={tech} className="bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white">
                           {tech}
                         </Badge>
                       ))}

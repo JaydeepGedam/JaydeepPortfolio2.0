@@ -215,37 +215,7 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Skills summary */}
-        <div 
-          className={`mt-16 transform transition-all duration-1000 delay-600 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}
-        >
-          <Card className="bg-gradient-to-r from-gray-900/80 to-black/80 border-green-400/30">
-            <CardContent className="p-8">
-              <div className="grid md:grid-cols-3 gap-8 text-center">
-                <div>
-                  <div className="text-3xl font-bold text-green-400 mb-2">
-                    {skills.technical.length + skills.tools.length}
-                  </div>
-                  <div className="text-gray-300">Technical Skills</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-yellow-400 mb-2">
-                    {skills.soft.length}
-                  </div>
-                  <div className="text-gray-300">Soft Skills</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-blue-400 mb-2">
-                    3+
-                  </div>
-                  <div className="text-gray-300">Years Experience</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+
       </div>
     </section>
   );

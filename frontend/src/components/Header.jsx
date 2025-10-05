@@ -27,8 +27,7 @@ const Header = () => {
     { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
     { id: 'skills', label: 'Skills' },
-    { id: 'achievements', label: 'Achievements' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'achievements', label: 'Achievements' }
   ];
 
   return (
@@ -75,12 +74,6 @@ const Header = () => {
               <Download className="w-4 h-4 mr-2" />
               Resume
             </Button>
-            <Button
-              className="bg-green-400 text-black hover:bg-green-500 transition-all duration-300"
-              onClick={() => scrollToSection('contact')}
-            >
-              Let's Connect
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -113,12 +106,6 @@ const Header = () => {
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Resume
-                </Button>
-                <Button
-                  className="bg-green-400 text-black hover:bg-green-500 w-full"
-                  onClick={() => scrollToSection('contact')}
-                >
-                  Let's Connect
                 </Button>
               </div>
             </nav>

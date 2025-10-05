@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, Phone, MapPin, Heart, ArrowUp, Download } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { personalInfo } from '../mock/portfolioData';
 
 const Footer = () => {
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  
+  const titles = [
+    '< Frontend Developer />',
+    '< Prompt Engineer />',
+    '< AI Engineer />'
+  ];
+  
+  const descriptions = {
+    0: 'Passionate frontend developer with expertise in React, Next.js, and modern web technologies. Creating responsive and user-friendly interfaces.',
+    1: 'Expert in crafting effective prompts for AI systems and optimizing LLM interactions. Bridging human intent with AI capabilities.',
+    2: 'Specialized in developing AI-powered solutions and machine learning applications. Building intelligent systems that solve real-world problems.'
+  };
+  
+  useEffect(() => {
+    const titleInterval = setInterval(() => {
+      setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+    }, 3000);
+    
+    return () => clearInterval(titleInterval);
+  }, [titles.length]);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -16,7 +38,6 @@ const Footer = () => {
     { label: 'Projects', href: '#projects' },
     { label: 'Skills', href: '#skills' },
     { label: 'Achievements', href: '#achievements' },
-    { label: 'Contact', href: '#contact' }
   ];
 
   const socialLinks = [
@@ -70,34 +91,27 @@ const Footer = () => {
                 <span className="text-white">JAYDEEP</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-400"> GEDAM</span>
               </h3>
-              <p className="text-gray-300 text-lg mb-4">
-                {personalInfo.title}
+              <p className="text-green-400 text-lg mb-4 font-mono transition-all duration-500">
+                {titles[currentTitleIndex]}
               </p>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                {personalInfo.description}
+              <p className="text-gray-400 leading-relaxed mb-6 transition-all duration-500">
+                {descriptions[currentTitleIndex]}
               </p>
               
               {/* Key highlights */}
               <div className="flex flex-wrap gap-2 mb-6">
-                <Badge className="bg-yellow-400 text-black">
+                <Badge className="bg-yellow-400 text-black hover:bg-yellow-500 hover:text-black">
                   🏆 Patent Holder
                 </Badge>
-                <Badge className="bg-green-400 text-black">
+                <Badge className="bg-green-400 text-black hover:bg-green-500 hover:text-black">
                   🎆 Innovation Award Winner
                 </Badge>
-                <Badge className="bg-blue-400 text-black">
+                <Badge className="bg-blue-400 text-black hover:bg-blue-500 hover:text-black">
                   📚 Published Researcher
                 </Badge>
               </div>
 
-              {/* Resume download */}
-              <Button
-                onClick={() => window.open(personalInfo.resume, '_blank')}
-                className="bg-gradient-to-r from-green-400 to-yellow-400 text-black hover:from-green-500 hover:to-yellow-500 transition-all duration-300"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download Resume
-              </Button>
+
             </div>
           </div>
 
@@ -145,16 +159,7 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Availability status */}
-            <div className="mt-6 p-4 bg-gray-900/50 rounded-lg border border-green-400/30">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="text-white font-medium text-sm">Available for Opportunities</span>
-              </div>
-              <p className="text-gray-400 text-xs">
-                Open to frontend development roles and innovative collaborations
-              </p>
-            </div>
+
           </div>
         </div>
 
@@ -200,15 +205,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Inspirational quote */}
-        <div className="mt-8 text-center">
-          <div className="max-w-2xl mx-auto p-6 bg-gradient-to-r from-green-400/10 to-yellow-400/10 rounded-lg border border-green-400/20">
-            <p className="text-gray-300 italic text-lg mb-2">
-              "Innovation is not about the technology you use, but about the problems you solve and the lives you touch."
-            </p>
-            <p className="text-green-400 font-medium">- Jaydeep Gedam</p>
-          </div>
-        </div>
+
       </div>
 
       {/* Scroll to top button - fixed position */}

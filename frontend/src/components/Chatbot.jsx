@@ -31,7 +31,7 @@ const Chatbot = () => {
 
   const getBotResponse = (message) => {
     const lowerMessage = message.toLowerCase();
-    
+
     // Check for specific keywords
     if (lowerMessage.includes('project') || lowerMessage.includes('nayaan') || lowerMessage.includes('nextbms') || lowerMessage.includes('grocerymate')) {
       if (lowerMessage.includes('nayaan')) {
@@ -40,31 +40,31 @@ const Chatbot = () => {
         return chatbotData.responses.projects;
       }
     }
-    
+
     if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('react') || lowerMessage.includes('javascript')) {
       return chatbotData.responses.skills;
     }
-    
+
     if (lowerMessage.includes('achievement') || lowerMessage.includes('award') || lowerMessage.includes('patent') || lowerMessage.includes('competition')) {
       return chatbotData.responses.achievements;
     }
-    
+
     if (lowerMessage.includes('education') || lowerMessage.includes('college') || lowerMessage.includes('degree') || lowerMessage.includes('study')) {
       return chatbotData.responses.education;
     }
-    
+
     if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('reach')) {
       return chatbotData.responses.contact;
     }
-    
+
     if (lowerMessage.includes('experience') || lowerMessage.includes('internship') || lowerMessage.includes('work')) {
       return chatbotData.responses.experience;
     }
-    
+
     if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
       return chatbotData.greetings[Math.floor(Math.random() * chatbotData.greetings.length)];
     }
-    
+
     return chatbotData.fallback;
   };
 
@@ -128,38 +128,37 @@ const Chatbot = () => {
           >
             <MessageCircle className="w-8 h-8" />
           </Button>
-          
-          {/* Notification dot */}
           <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse" />
-          
-          {/* Tooltip */}
-          <div className="absolute bottom-full right-0 mb-2 opacity-0 hover:opacity-100 transition-opacity">
-            <div className="bg-black/90 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap">
-              Chat with me! Ask about projects, skills, or anything 🚀
-            </div>
-          </div>
         </div>
       )}
 
       {/* Chatbot window */}
       {isOpen && (
-        <div className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${
-          isMinimized ? 'w-80 h-16' : 'w-96 h-[600px]'
-        }`}>
+        <div
+          className={`fixed bottom-6 right-6 z-50 transition-all duration-300 overflow-hidden ${isMinimized ? 'w-80 h-16' : 'w-96 h-[600px]'
+            }`}
+        >
           <Card className="bg-gray-900/95 backdrop-blur-sm border-green-400/30 h-full flex flex-col shadow-2xl">
             {/* Header */}
-            <CardHeader className="flex-shrink-0 pb-3 bg-gradient-to-r from-green-400/10 to-yellow-400/10">
+            <CardHeader
+              className={`flex-shrink-0 bg-gradient-to-r from-green-400/10 to-yellow-400/10 ${isMinimized ? 'py-2 px-3' : 'pb-3 px-4 pt-3'
+                }`}
+            >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-gradient-to-r from-green-400 to-yellow-400 rounded-lg text-black">
                     <Bot className="w-5 h-5" />
                   </div>
-                  <div>
-                    <CardTitle className="text-white text-lg">Jaydeep's AI Assistant</CardTitle>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                      <span className="text-green-400 text-sm">Online</span>
-                    </div>
+                  <div className={`${isMinimized ? 'hidden md:block' : 'block'}`}>
+                    <CardTitle className="text-white text-sm md:text-lg">
+                      Jaydeep's AI Assistant
+                    </CardTitle>
+                    {!isMinimized && (
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                        <span className="text-green-400 text-sm">Online</span>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -167,15 +166,19 @@ const Chatbot = () => {
                     size="sm"
                     variant="ghost"
                     onClick={() => setIsMinimized(!isMinimized)}
-                    className="text-gray-400 hover:text-white p-1 h-8 w-8"
+                    className="text-gray-400 hover:text-white hover:bg-green-400/20 p-1 h-8 w-8"
                   >
-                    {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
+                    {isMinimized ? (
+                      <Maximize2 className="w-4 h-4" />
+                    ) : (
+                      <Minimize2 className="w-4 h-4" />
+                    )}
                   </Button>
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={() => setIsOpen(false)}
-                    className="text-gray-400 hover:text-white p-1 h-8 w-8"
+                    className="text-gray-400 hover:text-white hover:bg-red-400/20 p-1 h-8 w-8"
                   >
                     <X className="w-4 h-4" />
                   </Button>
@@ -183,6 +186,7 @@ const Chatbot = () => {
               </div>
             </CardHeader>
 
+            {/* Hide main content when minimized */}
             {!isMinimized && (
               <>
                 {/* Messages */}
@@ -192,33 +196,39 @@ const Chatbot = () => {
                       key={message.id}
                       className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
                     >
-                      <div className={`flex items-start gap-2 max-w-[80%] ${
-                        message.isBot ? 'flex-row' : 'flex-row-reverse'
-                      }`}>
-                        <div className={`p-2 rounded-full flex-shrink-0 ${
-                          message.isBot 
-                            ? 'bg-gradient-to-r from-green-400 to-yellow-400 text-black' 
-                            : 'bg-gray-700 text-white'
-                        }`}>
+                      <div
+                        className={`flex items-start gap-2 max-w-[80%] ${message.isBot ? 'flex-row' : 'flex-row-reverse'
+                          }`}
+                      >
+                        <div
+                          className={`p-2 rounded-full flex-shrink-0 ${message.isBot
+                              ? 'bg-gradient-to-r from-green-400 to-yellow-400 text-black'
+                              : 'bg-gray-700 text-white'
+                            }`}
+                        >
                           {message.isBot ? <Bot className="w-4 h-4" /> : <User className="w-4 h-4" />}
                         </div>
-                        <div className={`p-3 rounded-lg ${
-                          message.isBot 
-                            ? 'bg-gray-800 text-white' 
-                            : 'bg-gradient-to-r from-green-400 to-yellow-400 text-black'
-                        }`}>
+                        <div
+                          className={`p-3 rounded-lg ${message.isBot
+                              ? 'bg-gray-800 text-white'
+                              : 'bg-gradient-to-r from-green-400 to-yellow-400 text-black'
+                            }`}
+                        >
                           <p className="text-sm leading-relaxed">{message.text}</p>
-                          <p className={`text-xs mt-2 opacity-70 ${
-                            message.isBot ? 'text-gray-400' : 'text-black/70'
-                          }`}>
-                            {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          <p
+                            className={`text-xs mt-2 opacity-70 ${message.isBot ? 'text-gray-400' : 'text-black/70'
+                              }`}
+                          >
+                            {message.timestamp.toLocaleTimeString([], {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                            })}
                           </p>
                         </div>
                       </div>
                     </div>
                   ))}
-                  
-                  {/* Typing indicator */}
+
                   {isTyping && (
                     <div className="flex justify-start">
                       <div className="flex items-start gap-2">
@@ -228,14 +238,20 @@ const Chatbot = () => {
                         <div className="bg-gray-800 text-white p-3 rounded-lg">
                           <div className="flex space-x-1">
                             <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                            <div
+                              className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                              style={{ animationDelay: '0.1s' }}
+                            />
+                            <div
+                              className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                              style={{ animationDelay: '0.2s' }}
+                            />
                           </div>
                         </div>
                       </div>
                     </div>
                   )}
-                  
+
                   <div ref={messagesEndRef} />
                 </div>
 
