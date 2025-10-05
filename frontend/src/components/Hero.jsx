@@ -63,17 +63,6 @@ const Hero = () => {
       {/* Main content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
         <div className="text-center">
-          {/* Patent Holder Badge */}
-          <div 
-            className={`inline-block mb-8 transform transition-all duration-1000 ${
-              isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'
-            }`}
-          >
-            <div className="bg-gradient-to-r from-yellow-400 to-green-400 text-black px-6 py-2 font-bold text-sm md:text-base transform -rotate-3 shadow-lg">
-              🏆 PATENT HOLDER
-            </div>
-          </div>
-
           {/* Main heading */}
           <div 
             className={`mb-6 transform transition-all duration-1000 delay-200 ${
@@ -112,7 +101,7 @@ const Hero = () => {
 
           {/* CTAs */}
           <div 
-            className={`flex flex-col sm:flex-row gap-4 justify-center items-center transform transition-all duration-1000 delay-800 ${
+            className={`flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 transform transition-all duration-1000 delay-800 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
@@ -135,9 +124,9 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Scroll indicator */}
+          {/* Scroll indicator - moved below buttons */}
           <div 
-            className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1000 ${
+            className={`transform transition-all duration-1000 delay-1000 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
