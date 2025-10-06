@@ -192,7 +192,7 @@ const Footer = () => {
             {/* Copyright and scroll to top */}
             <div className="flex items-center gap-6">
               <p className="text-gray-400 text-sm">
-                © {currentYear} Made with <Heart className="inline w-4 h-4 text-red-400 mx-1" /> by Jaydeep Gedam
+                © {currentYear} Made with <Heart className="inline w-4 h-4 text-red-400 mx-1" /> by Jaydeep Nitin Gedam
               </p>
               <Button
                 onClick={scrollToTop}
