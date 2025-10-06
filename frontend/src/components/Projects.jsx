@@ -86,7 +86,6 @@ const Projects = () => {
                 <CardContent className="p-8">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-3">
-                      {getCategoryIcon(project.category)}
                       <Badge variant="outline" className="border-green-400 text-green-400">
                         {project.category}
                       </Badge>

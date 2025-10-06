@@ -29,20 +29,60 @@ const Chatbot = () => {
     scrollToBottom();
   }, [messages]);
 
+  const [coffeeCount] = useState(Math.floor(Math.random() * 50) + 20);
+  const [isTypoMode, setIsTypoMode] = useState(false);
+
+  const sarcasticResponses = [
+    "Oh, another 'What's your favorite color?' question 🙄",
+    "Let me guess... you want to know about my hobbies? 😏",
+    "Wow, such an original question! 🎭",
+    "*sips coffee* Another classic question I see ☕"
+  ];
+
+  const memeResponses = {
+    bug: "It's not a bug, it's a feature! 🐛",
+    work: "This is fine 🔥 (everything is definitely not fine)",
+    code: "Works on my machine 🤷‍♂️",
+    coffee: "Coffee not found: 404 ☕",
+    deploy: "It works on localhost! 🚀"
+  };
+
   const getBotResponse = (message) => {
     const lowerMessage = message.toLowerCase();
 
-    // Check for specific keywords
+    // Sarcastic responses for common questions
+    if (lowerMessage.includes('color') || lowerMessage.includes('favourite') || lowerMessage.includes('favorite')) {
+      return sarcasticResponses[0];
+    }
+
+    if (lowerMessage.includes('hobby') || lowerMessage.includes('hobbies')) {
+      return sarcasticResponses[1];
+    }
+
+    // Meme responses
+    if (lowerMessage.includes('bug') || lowerMessage.includes('error')) {
+      return memeResponses.bug;
+    }
+
+    if (lowerMessage.includes('deploy') || lowerMessage.includes('production')) {
+      return memeResponses.deploy;
+    }
+
+    if (lowerMessage.includes('coffee')) {
+      return `${memeResponses.coffee} I've had ${coffeeCount} cups while building this portfolio! ☕`;
+    }
+
+    // Original responses with personality
     if (lowerMessage.includes('project') || lowerMessage.includes('nayaan') || lowerMessage.includes('nextbms') || lowerMessage.includes('grocerymate')) {
       if (lowerMessage.includes('nayaan')) {
-        return chatbotData.responses.nayaan;
+        return `${chatbotData.responses.nayaan} ${memeResponses.work}`;
       } else {
-        return chatbotData.responses.projects;
+        return `${chatbotData.responses.projects} ☕ Coffee count: ${coffeeCount}`;
       }
     }
 
     if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('react') || lowerMessage.includes('javascript')) {
-      return chatbotData.responses.skills;
+      return `${chatbotData.responses.skills} ${memeResponses.code}`;
     }
 
     if (lowerMessage.includes('achievement') || lowerMessage.includes('award') || lowerMessage.includes('patent') || lowerMessage.includes('competition')) {
@@ -58,14 +98,14 @@ const Chatbot = () => {
     }
 
     if (lowerMessage.includes('experience') || lowerMessage.includes('internship') || lowerMessage.includes('work')) {
-      return chatbotData.responses.experience;
+      return `${chatbotData.responses.experience} ${memeResponses.work}`;
     }
 
     if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-      return chatbotData.greetings[Math.floor(Math.random() * chatbotData.greetings.length)];
+      return `${chatbotData.greetings[Math.floor(Math.random() * chatbotData.greetings.length)]} ☕ Powered by ${coffeeCount} cups of coffee!`;
     }
 
-    return chatbotData.fallback;
+    return `${chatbotData.fallback} ${sarcasticResponses[Math.floor(Math.random() * sarcasticResponses.length)]}`;
   };
 
   const handleSendMessage = () => {
@@ -82,16 +122,43 @@ const Chatbot = () => {
     setInputMessage('');
     setIsTyping(true);
 
-    // Simulate bot thinking time
+    // Simulate bot thinking time with occasional typos
     setTimeout(() => {
-      const botResponse = {
-        id: messages.length + 2,
-        text: getBotResponse(inputMessage),
-        isBot: true,
-        timestamp: new Date()
-      };
-
-      setMessages(prev => [...prev, botResponse]);
+      const shouldTypo = Math.random() < 0.3; // 30% chance of typo
+      let response = getBotResponse(inputMessage);
+      
+      if (shouldTypo) {
+        setIsTypoMode(true);
+        const typoResponse = {
+          id: messages.length + 2,
+          text: response.replace(/the/g, 'teh').replace(/you/g, 'yuo'),
+          isBot: true,
+          timestamp: new Date()
+        };
+        
+        setMessages(prev => [...prev, typoResponse]);
+        
+        // Correct the typo after 1 second
+        setTimeout(() => {
+          const correctedResponse = {
+            id: messages.length + 3,
+            text: `*${response}`,
+            isBot: true,
+            timestamp: new Date()
+          };
+          setMessages(prev => [...prev, correctedResponse]);
+          setIsTypoMode(false);
+        }, 1000);
+      } else {
+        const botResponse = {
+          id: messages.length + 2,
+          text: response,
+          isBot: true,
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, botResponse]);
+      }
+      
       setIsTyping(false);
     }, 1000 + Math.random() * 1000);
   };

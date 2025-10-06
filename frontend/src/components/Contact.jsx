@@ -48,16 +48,27 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Mock form submission - In real app, this would send to backend
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Using EmailJS - install: npm install @emailjs/browser
+      const emailjs = await import('@emailjs/browser');
+      
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      );
       
       toast({
         title: "Message Sent Successfully! 🚀",
         description: "Thank you for reaching out. I'll get back to you soon!",
         duration: 5000
       });
-      
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       toast({
