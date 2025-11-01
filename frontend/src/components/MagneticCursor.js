@@ -1,88 +1,107 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const MagneticCursor = () => {
   const cursorRef = useRef(null);
-  const cursorDotRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
+  const [ripples, setRipples] = useState([]);
+  const animationRef = useRef();
 
   useEffect(() => {
-    const cursor = cursorRef.current;
-    const cursorDot = cursorDotRef.current;
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-    let dotX = 0, dotY = 0;
+    const checkMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth <= 768;
+      setIsMobile(isTouchDevice || isSmallScreen);
+    };
 
-    const updateCursor = () => {
-      cursorX += (mouseX - cursorX) * 0.15;
-      cursorY += (mouseY - cursorY) * 0.15;
-      dotX += (mouseX - dotX) * 0.8;
-      dotY += (mouseY - dotY) * 0.8;
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    if (!isMobile) {
+      const cursor = cursorRef.current;
+      let mouseX = 0, mouseY = 0;
+
+      const updateCursor = () => {
+        if (cursor) {
+          cursor.style.transform = `translate3d(${mouseX - 6}px, ${mouseY - 6}px, 0)`;
+        }
+        animationRef.current = requestAnimationFrame(updateCursor);
+      };
+
+      const handleMouseMove = (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      };
+
+      const handleMouseDown = () => {
+        setIsClicking(true);
+        const newRipple = {
+          id: Date.now(),
+          x: mouseX,
+          y: mouseY,
+        };
+        setRipples(prev => [...prev, newRipple]);
+        setTimeout(() => {
+          setRipples(prev => prev.filter(r => r.id !== newRipple.id));
+        }, 600);
+      };
+
+      const handleMouseUp = () => setIsClicking(false);
+
+      document.addEventListener('mousemove', handleMouseMove, { passive: true });
+      document.addEventListener('mousedown', handleMouseDown);
+      document.addEventListener('mouseup', handleMouseUp);
       
-      if (cursor) {
-        cursor.style.transform = `translate(${cursorX - 20}px, ${cursorY - 20}px)`;
-      }
-      if (cursorDot) {
-        cursorDot.style.transform = `translate(${dotX - 3}px, ${dotY - 3}px)`;
-      }
+      updateCursor();
 
-      requestAnimationFrame(updateCursor);
-    };
-
-    const handleMouseMove = (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    };
-
-    const handleMouseEnter = (e) => {
-      if (e.target && e.target.matches && e.target.matches('button, a, [role="button"], input, textarea')) {
-        cursor.style.transform += ' scale(1.5)';
-        cursor.style.background = 'rgba(0, 245, 255, 0.2)';
-        cursor.style.borderColor = '#00f5ff';
-      }
-    };
-
-    const handleMouseLeave = (e) => {
-      if (e.target && e.target.matches && e.target.matches('button, a, [role="button"], input, textarea')) {
-        cursor.style.background = 'rgba(255, 255, 255, 0.05)';
-        cursor.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-      }
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseenter', handleMouseEnter, true);
-    document.addEventListener('mouseleave', handleMouseLeave, true);
-    
-    updateCursor();
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mousedown', handleMouseDown);
+        document.removeEventListener('mouseup', handleMouseUp);
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+        }
+      };
+    }
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseenter', handleMouseEnter, true);
-      document.removeEventListener('mouseleave', handleMouseLeave, true);
+      window.removeEventListener('resize', checkMobile);
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   return (
     <>
       <div
         ref={cursorRef}
-        className="fixed w-10 h-10 rounded-full pointer-events-none z-[9999]"
+        className="fixed w-3 h-3 rounded-full pointer-events-none z-[10000] will-change-transform"
         style={{
-          background: 'rgba(255, 255, 255, 0.05)',
-          border: '2px solid rgba(255, 255, 255, 0.3)',
-          transition: 'all 0.3s ease',
-          backdropFilter: 'blur(10px)',
+          background: '#00ff88',
+          boxShadow: '0 0 20px #00ff88',
+          transform: isClicking ? 'scale(1.5)' : 'scale(1)',
+          transition: 'transform 0.1s ease',
         }}
       />
-      <div
-        ref={cursorDotRef}
-        className="fixed w-1.5 h-1.5 rounded-full pointer-events-none z-[10000]"
-        style={{
-          background: '#00f5ff',
-          boxShadow: '0 0 10px #00f5ff, 0 0 20px #00f5ff',
-        }}
-      />
+      {ripples.map(ripple => (
+        <div
+          key={ripple.id}
+          className="fixed rounded-full pointer-events-none z-[9999] animate-ping"
+          style={{
+            left: ripple.x - 15,
+            top: ripple.y - 15,
+            width: 30,
+            height: 30,
+            border: '2px solid #00ff88',
+            animationDuration: '0.6s',
+          }}
+        />
+      ))}
       <style jsx>{`
-        * { cursor: none !important; }
-        body { cursor: none !important; }
+        @media (hover: hover) and (pointer: fine) {
+          * { cursor: none !important; }
+          body { cursor: none !important; }
+        }
       `}</style>
     </>
   );
