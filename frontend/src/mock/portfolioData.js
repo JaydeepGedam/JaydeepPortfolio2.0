@@ -37,27 +37,44 @@ export const projects = [
     images: [
       "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop"
-    ]
+    ],
+    liveDemo: "https://nayaan.vercel.app/"
   },
   {
     id: 2,
-    title: "NextBMS - Smart Business Management Solution",
-    subtitle: "WEB APPLICATION • NEXT.JS",
-    description: "A comprehensive business management web application built with Next.js, providing inventory and people management services for commerce stores.",
-    longDescription: "NextBMS is a modern web application designed to streamline business operations for small to medium-sized commerce stores. The platform offers intuitive inventory management, employee management, and business analytics. Built with Next.js for optimal performance and user experience, the application features a responsive design that works seamlessly across all devices.",
-    technologies: ["Next.js", "React", "JavaScript", "CSS3", "Node.js", "Database Management"],
-    achievements: [
-      "Enhanced user interface with modern design principles",
-      "Implemented responsive design for mobile compatibility",
-      "Optimized frontend performance and load times"
+    title: "VibeCraft - AI Content Generator",
+    subtitle: "WEB APPLICATION • REACT • TYPESCRIPT",
+    description: "VibeCraft is an AI-powered content generation platform that lets users create, edit, and manage blog posts, marketing copy, and social media content from customizable prompts and templates.",
+    longDescription: "VibeCraft is a full-stack AI content creation web app built to help creators and marketers produce high-quality written content quickly. Users can register and log in, choose or create prompt templates, submit prompts to an AI provider, and receive editable drafts. Each generation is persisted with metadata (prompt, tone, length, timestamp) so users can revisit, edit, and export past outputs. The frontend is built with React + TypeScript and Vite for a fast, responsive single-page experience, styled with Tailwind CSS. The backend uses Node.js and Express with MongoDB (Mongoose) for persistence and modular routes (auth, content, user). Key responsibilities handled by the app include secure authentication, orchestration of generation requests to an AI provider, storage and versioning of generation history, and an editor-first UX for refining AI outputs.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Mongoose",
+      "JWT (authentication)",
+      "AI provider (OpenAI)"
     ],
-    status: "Completed",
-    category: "Web Development",
-    featured: false,
+    achievements: [
+      "Implemented secure user registration, login, and protected routes for generation and history.",
+      "Built a reusable prompt/template flow to produce consistent, repeatable AI outputs.",
+      "Persisted generated content and versioned history with Mongoose models for GeneratedContent, GeneratedHistory, and User.",
+      "Designed an editor-first, responsive UI using React + TypeScript and Tailwind CSS to speed editing and iteration.",
+      "Modular API design separating auth, content, and user concerns to improve maintainability and scalability."
+    ],
+    status: "Live",
+    category: "Full Stack",
+    featured: true,
     images: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1553484771-371a605b060b?w=800&h=600&fit=crop"
+      "https://images.unsplash.com/photo-1554168155-48f6e3f7b7f9?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1526378723711-1f9d9b0c9a8a?w=800&h=600&fit=crop"
     ]
+    ,
+    // Add a live demo URL (replace with the real deployment URL when available)
+    liveDemo: "https://vibecraft-frontend.onrender.com/"
   },
   {
     id: 3,

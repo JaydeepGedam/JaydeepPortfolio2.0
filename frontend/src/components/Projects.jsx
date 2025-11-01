@@ -149,11 +149,11 @@ const Projects = () => {
                         <ExternalLink className="ml-2 w-4 h-4" />
                       </Button>
                       
-                      {project.status === 'Live' && (
+                      {project.liveDemo && (
                         <Button
                           variant="outline"
                           className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black"
-                          onClick={() => window.open('https://nayaan.vercel.app/', '_blank')}
+                          onClick={() => window.open(project.liveDemo, '_blank')}
                         >
                           Live Demo
                           <ExternalLink className="ml-2 w-4 h-4" />
