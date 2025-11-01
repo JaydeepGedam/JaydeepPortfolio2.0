@@ -72,7 +72,7 @@ const About = () => {
                 <CardContent className="p-8 text-center">
                   <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-400 to-yellow-400 p-1">
                     <img 
-                      src="/profile-image.jpg" 
+                      src="/profile-image.png" 
                       alt="Jaydeep Nitin Gedam" 
                       className="w-full h-full rounded-full object-cover"
                     />
