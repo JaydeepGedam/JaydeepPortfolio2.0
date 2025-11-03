@@ -183,14 +183,16 @@ export const internships = [
     company: "Persistent Systems",
     duration: "7-week virtual internship",
     description: "Completed comprehensive virtual internship program focusing on software development practices and emerging technologies.",
-    certificate: true
+    certificate: true,
+    certificateUrl: "https://drive.google.com/file/d/13VtycfuY8KCB5tE0reanM1bfWZOdXlfl/view"
   },
   {
     title: "Web Development using Python Django",
     company: "Bitlance Tech Hub Pvt. Ltd.",
     duration: "3 months internship",
     description: "Gained hands-on experience in web development using Python Django framework, working on real-world projects.",
-    certificate: true
+    certificate: true,
+    certificateUrl: "https://drive.google.com/file/d/1PeR2OJWrQnhZ-gefH5PVIa8FP5iUof_y/view"
   }
 ];
 

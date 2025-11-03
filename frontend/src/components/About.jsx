@@ -189,9 +189,19 @@ const About = () => {
                               {exp.duration}
                             </Badge>
                             {exp.certificate && (
-                              <Badge variant="secondary" className="bg-gray-800 text-gray-300">
-                                Certificate Available
-                              </Badge>
+                              <a
+                                href={exp.certificateUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="no-underline"
+                              >
+                                <Badge
+                                  variant="secondary"
+                                  className="cursor-pointer bg-green-400 text-black hover:bg-green-500 hover:text-black transition-colors"
+                                >
+                                  Certificate Available
+                                </Badge>
+                              </a>
                             )}
                           </div>
                         </div>
