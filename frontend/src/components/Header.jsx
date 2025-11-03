@@ -70,7 +70,7 @@ const Header = () => {
             <Button
               variant="outline"
               className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black transition-all duration-300"
-              onClick={() => window.open('https://customer-assets.emergentagent.com/job_6e932482-3580-4767-b9db-223a26b22545/artifacts/tage9lwz_Resume_JaydeepGedam%28latest%29.pdf', '_blank')}
+              onClick={() => window.open('https://drive.google.com/file/d/1IxCWOF4ggNne4-0JGkDnOxMNbr7C1eyK/view?usp=drive_link', '_blank')}
             >
               <Download className="w-4 h-4 mr-2" />
               Resume

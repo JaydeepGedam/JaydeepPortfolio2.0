@@ -13,7 +13,7 @@ export const personalInfo = {
     linkedin: "JaydeepGedam",
     github: "JaydeepGedam"
   },
-  resume: "https://customer-assets.emergentagent.com/job_6e932482-3580-4767-b9db-223a26b22545/artifacts/tage9lwz_Resume_JaydeepGedam%28latest%29.pdf"
+  resume: "https://drive.google.com/file/d/1IxCWOF4ggNne4-0JGkDnOxMNbr7C1eyK/view?usp=drive_link"
 };
 
 export const projects = [
