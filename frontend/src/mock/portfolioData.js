@@ -9,7 +9,7 @@ export const personalInfo = {
   contact: {
     email: "jaydeep.gedam444@gmail.com",
     phone: "+91 9545176151",
-    location: "Amravati, Maharashtra, India",
+    location: "Thane, Maharashtra, India",
     linkedin: "JaydeepGedam",
     github: "JaydeepGedam"
   },
