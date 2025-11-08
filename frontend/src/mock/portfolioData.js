@@ -13,7 +13,7 @@ export const personalInfo = {
     linkedin: "JaydeepGedam",
     github: "JaydeepGedam"
   },
-  resume: "https://drive.google.com/file/d/1IxCWOF4ggNne4-0JGkDnOxMNbr7C1eyK/view?usp=drive_link"
+  resume: "https://drive.google.com/file/d/18hl6PG6JQi2nqt5-A_R0L47NzD0rQeIq/view?usp=sharing"
 };
 
 export const projects = [
