@@ -78,24 +78,40 @@ export const projects = [
   },
   {
     id: 3,
-    title: "GroceryMate - E-commerce Platform",
-    subtitle: "TCS TRAINING PROJECT • FULL STACK",
-    description: "A complete e-commerce web application for grocery shopping with user authentication, product management, and admin dashboard functionality.",
-    longDescription: "GroceryMate is a full-featured e-commerce platform developed during TCS training. The application includes user registration and authentication, a comprehensive product catalog, shopping cart functionality, and an admin panel for product and user management. The frontend is built with HTML, Tailwind CSS, and JavaScript, focusing on creating an intuitive and responsive user experience.",
-    technologies: ["HTML5", "Tailwind CSS", "JavaScript", "Python", "Database", "Authentication"],
-    achievements: [
-      "Implemented secure user authentication system",
-      "Designed responsive UI with Tailwind CSS",
-      "Created comprehensive admin dashboard",
-      "Optimized user experience with modern design patterns"
+    title: "EKO - AI Twin Builder Platform",
+    subtitle: "LIVE • FULL STACK • AI-POWERED",
+    description: "A sophisticated web application that enables users to create their own AI Twin that mirrors their tone, thinking, and communication style through interactive training and chat capabilities.",
+    longDescription: "EKO is an innovative AI Twin Builder Platform that revolutionizes personal AI interaction by allowing users to create a digital counterpart that learns and adapts to their unique communication style. The platform features an intuitive onboarding process, interactive training modules where users can teach their AI twin through conversations, and a robust chat interface for real-time interactions. Built with modern web technologies, EKO leverages Supabase for backend services, authentication, and database management, ensuring scalability and security. The application includes beautiful 3D visualizations powered by React Three Fiber, smooth animations with Framer Motion, and a comprehensive component library using shadcn/ui for a polished user experience.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Supabase",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "React Three Fiber",
+      "Framer Motion",
+      "Zustand",
+      "React Query",
+      "React Router",
+      "Recharts"
     ],
-    status: "Completed",
+    achievements: [
+      "Built a complete AI twin training system with natural conversation flow",
+      "Implemented secure authentication and user management with Supabase",
+      "Designed responsive, modern UI with 3D visualizations and smooth animations",
+      "Created scalable state management architecture using Zustand",
+      "Deployed production-ready application with CI/CD pipeline on Render",
+      "Integrated real-time chat functionality with persistent conversation history"
+    ],
+    status: "Live",
     category: "Full Stack",
-    featured: false,
+    featured: true,
     images: [
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop"
-    ]
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop"
+    ],
+    liveDemo: "https://eko-ai-twin.onrender.com/"
   }
 ];
 
