@@ -70,7 +70,7 @@ const Header = () => {
             <Button
               variant="outline"
               className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black transition-all duration-300"
-              onClick={() => window.open('https://drive.google.com/file/d/1IxCWOF4ggNne4-0JGkDnOxMNbr7C1eyK/view?usp=drive_link', '_blank')}
+              onClick={() => window.open('https://drive.google.com/file/d/18hl6PG6JQi2nqt5-A_R0L47NzD0rQeIq/view?usp=drive_link', '_blank')}
             >
               <Download className="w-4 h-4 mr-2" />
               Resume
