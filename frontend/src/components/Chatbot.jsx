@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, Send, X, Bot, User, Minimize2, Maximize2 } from 'lucide-react';
+import { MessageCircle, Send, X, Bot, User, Minimize2, Maximize2, Trash2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { chatbotData } from '../mock/portfolioData';
+import { personalInfo, projects, skills, education, achievements, internships, chatbotData } from '../mock/portfolioData';
+import { getOpenAIResponse } from '../utils/openai';
+import ReactMarkdown from 'react-markdown';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,85 +32,44 @@ const Chatbot = () => {
   }, [messages]);
 
   const [coffeeCount] = useState(Math.floor(Math.random() * 50) + 20);
-  const [isTypoMode, setIsTypoMode] = useState(false);
 
-  const sarcasticResponses = [
-    "Oh, another 'What's your favorite color?' question 🙄",
-    "Let me guess... you want to know about my hobbies? 😏",
-    "Wow, such an original question! 🎭",
-    "*sips coffee* Another classic question I see ☕"
-  ];
+  const generateSystemPrompt = () => {
+    return `
+      You are Jaydeep's AI Assistant for his portfolio website.
+      Your goal is to answer questions about Jaydeep Gedam based on the following data.
+      
+      PERSONAL INFO:
+      ${JSON.stringify(personalInfo)}
+      
+      PROJECTS:
+      ${JSON.stringify(projects)}
+      
+      SKILLS:
+      ${JSON.stringify(skills)}
+      
+      EDUCATION:
+      ${JSON.stringify(education)}
+      
+      ACHIEVEMENTS:
+      ${JSON.stringify(achievements)}
+      
+      INTERNSHIPS:
+      ${JSON.stringify(internships)}
+      
+      Current Coffee Count: ${coffeeCount} cups.
 
-  const memeResponses = {
-    bug: "It's not a bug, it's a feature! 🐛",
-    work: "This is fine 🔥 (everything is definitely not fine)",
-    code: "Works on my machine 🤷‍♂️",
-    coffee: "Coffee not found: 404 ☕",
-    deploy: "It works on localhost! 🚀"
+      INSTRUCTIONS:
+      1. Be friendly, professional, but also a bit witty and fun.
+      2. Use emojis occasionally.
+      3. If asked about something not in the data, politely say you don't know but suggest contacting Jaydeep.
+      4. Keep answers concise (under 3-4 sentences) unless asked for details.
+      5. You can be sarcastic if the user asks generic questions like "What is your favorite color?".
+      6. Emphasize his patent (Nayaan) and key projects.
+      7. Format your responses nicely.
+    `;
   };
 
-  const getBotResponse = (message) => {
-    const lowerMessage = message.toLowerCase();
-
-    // Sarcastic responses for common questions
-    if (lowerMessage.includes('color') || lowerMessage.includes('favourite') || lowerMessage.includes('favorite')) {
-      return sarcasticResponses[0];
-    }
-
-    if (lowerMessage.includes('hobby') || lowerMessage.includes('hobbies')) {
-      return sarcasticResponses[1];
-    }
-
-    // Meme responses
-    if (lowerMessage.includes('bug') || lowerMessage.includes('error')) {
-      return memeResponses.bug;
-    }
-
-    if (lowerMessage.includes('deploy') || lowerMessage.includes('production')) {
-      return memeResponses.deploy;
-    }
-
-    if (lowerMessage.includes('coffee')) {
-      return `${memeResponses.coffee} I've had ${coffeeCount} cups while building this portfolio! ☕`;
-    }
-
-    // Original responses with personality
-    if (lowerMessage.includes('project') || lowerMessage.includes('nayaan') || lowerMessage.includes('nextbms') || lowerMessage.includes('grocerymate')) {
-      if (lowerMessage.includes('nayaan')) {
-        return `${chatbotData.responses.nayaan} ${memeResponses.work}`;
-      } else {
-        return `${chatbotData.responses.projects} ☕ Coffee count: ${coffeeCount}`;
-      }
-    }
-
-    if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('react') || lowerMessage.includes('javascript')) {
-      return `${chatbotData.responses.skills} ${memeResponses.code}`;
-    }
-
-    if (lowerMessage.includes('achievement') || lowerMessage.includes('award') || lowerMessage.includes('patent') || lowerMessage.includes('competition')) {
-      return chatbotData.responses.achievements;
-    }
-
-    if (lowerMessage.includes('education') || lowerMessage.includes('college') || lowerMessage.includes('degree') || lowerMessage.includes('study')) {
-      return chatbotData.responses.education;
-    }
-
-    if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('reach')) {
-      return chatbotData.responses.contact;
-    }
-
-    if (lowerMessage.includes('experience') || lowerMessage.includes('internship') || lowerMessage.includes('work')) {
-      return `${chatbotData.responses.experience} ${memeResponses.work}`;
-    }
-
-    if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-      return `${chatbotData.greetings[Math.floor(Math.random() * chatbotData.greetings.length)]} ☕ Powered by ${coffeeCount} cups of coffee!`;
-    }
-
-    return `${chatbotData.fallback} ${sarcasticResponses[Math.floor(Math.random() * sarcasticResponses.length)]}`;
-  };
-
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
 
     const userMessage = {
@@ -122,45 +83,36 @@ const Chatbot = () => {
     setInputMessage('');
     setIsTyping(true);
 
-    // Simulate bot thinking time with occasional typos
-    setTimeout(() => {
-      const shouldTypo = Math.random() < 0.3; // 30% chance of typo
-      let response = getBotResponse(inputMessage);
-      
-      if (shouldTypo) {
-        setIsTypoMode(true);
-        const typoResponse = {
-          id: messages.length + 2,
-          text: response.replace(/the/g, 'teh').replace(/you/g, 'yuo'),
-          isBot: true,
-          timestamp: new Date()
-        };
-        
-        setMessages(prev => [...prev, typoResponse]);
-        
-        // Correct the typo after 1 second
-        setTimeout(() => {
-          const correctedResponse = {
-            id: messages.length + 3,
-            text: `*${response}`,
-            isBot: true,
-            timestamp: new Date()
-          };
-          setMessages(prev => [...prev, correctedResponse]);
-          setIsTypoMode(false);
-        }, 1000);
-      } else {
-        const botResponse = {
-          id: messages.length + 2,
-          text: response,
-          isBot: true,
-          timestamp: new Date()
-        };
-        setMessages(prev => [...prev, botResponse]);
-      }
-      
+    try {
+      // Filter history to only include text and role, excluding the latest user message which is passed as prompt
+      // Also exclude the first message (initial greeting) to ensure history starts with user role if any
+      const history = messages.slice(1).map(m => ({
+        text: m.text,
+        isBot: m.isBot
+      }));
+
+      const responseText = await getOpenAIResponse(inputMessage, history, generateSystemPrompt());
+
+      const botResponse = {
+        id: messages.length + 2,
+        text: responseText,
+        isBot: true,
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      console.error("Chat error:", error);
+      const errorResponse = {
+        id: messages.length + 2,
+        text: "Oops! I seem to have lost my train of thought. 🚂 Please try again.",
+        isBot: true,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorResponse]);
+    } finally {
       setIsTyping(false);
-    }, 1000 + Math.random() * 1000);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -178,9 +130,70 @@ const Chatbot = () => {
 
   const handleQuickQuestion = (question) => {
     setInputMessage(question);
+    // Use a small timeout to allow state update before sending
     setTimeout(() => {
-      handleSendMessage();
-    }, 100);
+      // We need to call handleSendMessage but since inputMessage state update is async, 
+      // it's better to just call the logic directly or wait. 
+      // However, handleSendMessage uses the state `inputMessage`.
+      // A better approach for quick questions is to pass the text directly to a send function.
+      // For now, let's just set the input and let the user press enter or simulate it.
+      // Actually, let's refactor handleSendMessage to accept an optional message argument.
+    }, 0);
+  };
+
+  // Refactored send handler to support direct arguments
+  const sendMessage = async (text) => {
+    if (!text.trim()) return;
+
+    const userMessage = {
+      id: Date.now(),
+      text: text,
+      isBot: false,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInputMessage('');
+    setIsTyping(true);
+
+    try {
+      const history = messages.slice(1).map(m => ({
+        text: m.text,
+        isBot: m.isBot
+      }));
+
+      const responseText = await getOpenAIResponse(text, history, generateSystemPrompt());
+
+      const botResponse = {
+        id: Date.now() + 1,
+        text: responseText,
+        isBot: true,
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      const errorResponse = {
+        id: Date.now() + 1,
+        text: "Oops! I seem to have lost my train of thought. 🚂 Please try again.",
+        isBot: true,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorResponse]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
+  const handleClearChat = () => {
+    setMessages([
+      {
+        id: 1,
+        text: chatbotData.greetings[0],
+        isBot: true,
+        timestamp: new Date()
+      }
+    ]);
   };
 
   return (
@@ -232,6 +245,15 @@ const Chatbot = () => {
                   <Button
                     size="sm"
                     variant="ghost"
+                    onClick={handleClearChat}
+                    title="Clear Chat"
+                    className="text-gray-400 hover:text-white hover:bg-red-400/20 p-1 h-8 w-8"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
                     onClick={() => setIsMinimized(!isMinimized)}
                     className="text-gray-400 hover:text-white hover:bg-green-400/20 p-1 h-8 w-8"
                   >
@@ -269,19 +291,21 @@ const Chatbot = () => {
                       >
                         <div
                           className={`p-2 rounded-full flex-shrink-0 ${message.isBot
-                              ? 'bg-gradient-to-r from-green-400 to-yellow-400 text-black'
-                              : 'bg-gray-700 text-white'
+                            ? 'bg-gradient-to-r from-green-400 to-yellow-400 text-black'
+                            : 'bg-gray-700 text-white'
                             }`}
                         >
                           {message.isBot ? <Bot className="w-4 h-4" /> : <User className="w-4 h-4" />}
                         </div>
                         <div
                           className={`p-3 rounded-lg ${message.isBot
-                              ? 'bg-gray-800 text-white'
-                              : 'bg-gradient-to-r from-green-400 to-yellow-400 text-black'
+                            ? 'bg-gray-800 text-white'
+                            : 'bg-gradient-to-r from-green-400 to-yellow-400 text-black'
                             }`}
                         >
-                          <p className="text-sm leading-relaxed">{message.text}</p>
+                          <div className="text-sm leading-relaxed whitespace-pre-wrap">
+                            <ReactMarkdown>{message.text}</ReactMarkdown>
+                          </div>
                           <p
                             className={`text-xs mt-2 opacity-70 ${message.isBot ? 'text-gray-400' : 'text-black/70'
                               }`}
@@ -332,7 +356,7 @@ const Chatbot = () => {
                           key={index}
                           variant="outline"
                           className="cursor-pointer border-green-400/50 text-green-400 hover:bg-green-400/10 text-xs py-1"
-                          onClick={() => handleQuickQuestion(question)}
+                          onClick={() => sendMessage(question)}
                         >
                           {question}
                         </Badge>
@@ -347,12 +371,12 @@ const Chatbot = () => {
                     <Input
                       value={inputMessage}
                       onChange={(e) => setInputMessage(e.target.value)}
-                      onKeyPress={handleKeyPress}
+                      onKeyPress={(e) => e.key === 'Enter' && sendMessage(inputMessage)}
                       placeholder="Ask me anything about Jaydeep..."
                       className="bg-gray-800 border-gray-600 text-white flex-1 focus:border-green-400"
                     />
                     <Button
-                      onClick={handleSendMessage}
+                      onClick={() => sendMessage(inputMessage)}
                       disabled={!inputMessage.trim()}
                       className="bg-gradient-to-r from-green-400 to-yellow-400 text-black hover:from-green-500 hover:to-yellow-500 px-4"
                     >
