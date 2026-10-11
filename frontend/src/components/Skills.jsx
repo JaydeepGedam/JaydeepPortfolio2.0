@@ -65,12 +65,18 @@ const Skills = () => {
   const getCategoryColor = (category) => {
     switch (category) {
       case 'Frontend': return 'text-blue-400';
+      case 'Backend': return 'text-green-400';
+      case 'Generative AI': return 'text-yellow-400';
+      case 'Cloud & AI': return 'text-yellow-400';
+      case 'Testing': return 'text-purple-400';
+      case 'Database': return 'text-emerald-400';
       case 'Programming': return 'text-green-400';
       case 'Tools': return 'text-yellow-400';
       case 'Design': return 'text-purple-400';
       case 'Development': return 'text-red-400';
-      case 'Version Control': return 'text-orange-400';
-      case 'Media': return 'text-pink-400';
+      case 'Cloud': return 'text-blue-400';
+      case 'DevOps': return 'text-orange-400';
+      case 'API Testing': return 'text-pink-400';
       default: return 'text-gray-400';
     }
   };
@@ -78,7 +84,10 @@ const Skills = () => {
   const getSkillIcon = (category) => {
     switch (category) {
       case 'Frontend': return <Code className="w-4 h-4" />;
-      case 'Programming': return <Database className="w-4 h-4" />;
+      case 'Backend':
+      case 'Database': return <Database className="w-4 h-4" />;
+      case 'Generative AI':
+      case 'Cloud & AI': return <TrendingUp className="w-4 h-4" />;
       case 'Design': return <Palette className="w-4 h-4" />;
       default: return <Wrench className="w-4 h-4" />;
     }

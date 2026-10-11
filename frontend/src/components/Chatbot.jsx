@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { personalInfo, projects, skills, education, achievements, internships, chatbotData } from '../mock/portfolioData';
+import { personalInfo, projects, skills, education, achievements, internships, workExperience, chatbotData } from '../mock/portfolioData';
 import { getOpenAIResponse } from '../utils/openai';
 import ReactMarkdown from 'react-markdown';
 
@@ -41,6 +41,9 @@ const Chatbot = () => {
       PERSONAL INFO:
       ${JSON.stringify(personalInfo)}
       
+      WORK EXPERIENCE:
+      ${JSON.stringify(workExperience)}
+      
       PROJECTS:
       ${JSON.stringify(projects)}
       
@@ -64,7 +67,7 @@ const Chatbot = () => {
       3. If asked about something not in the data, politely say you don't know but suggest contacting Jaydeep.
       4. Keep answers concise (under 3-4 sentences) unless asked for details.
       5. You can be sarcastic if the user asks generic questions like "What is your favorite color?".
-      6. Emphasize his patent (Nayaan) and key projects.
+      6. Emphasize his patent (Nayaan), his current role as Systems Engineer at TCS in the AI.cloud unit (working on GenAI Test Studio), and key projects like EpisodicAI and VibeCraft.
       7. Format your responses nicely.
     `;
   };
@@ -122,10 +125,10 @@ const Chatbot = () => {
   };
 
   const quickQuestions = [
+    "Tell me about EpisodicAI",
+    "What is your role at TCS?",
     "Tell me about Nayaan project",
-    "What are your skills?",
-    "Show me achievements",
-    "How to contact you?"
+    "What are your key skills?"
   ];
 
   const handleQuickQuestion = (question) => {

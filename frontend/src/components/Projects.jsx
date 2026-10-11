@@ -86,8 +86,9 @@ const Projects = () => {
                 <CardContent className="p-8">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-3">
-                      <Badge variant="outline" className="border-green-400 text-green-400">
-                        {project.category}
+                      <Badge variant="outline" className="border-green-400 text-green-400 flex items-center gap-1.5">
+                        {getCategoryIcon(project.category)}
+                        <span>{project.category}</span>
                       </Badge>
                     </div>
                     <div className="flex gap-2">
@@ -152,21 +153,32 @@ const Projects = () => {
                       {project.liveDemo && (
                         <Button
                           variant="outline"
-                          className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black"
+                          className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black transition-colors"
                           onClick={() => window.open(project.liveDemo, '_blank')}
                         >
                           Live Demo
                           <ExternalLink className="ml-2 w-4 h-4" />
                         </Button>
                       )}
-                  </div>
+
+                      {project.github && (
+                        <Button
+                          variant="outline"
+                          className="border-gray-600 text-gray-300 hover:border-green-400 hover:text-green-400 hover:bg-gray-800 transition-colors"
+                          onClick={() => window.open(project.github, '_blank')}
+                        >
+                          Code
+                          <Github className="ml-2 w-4 h-4" />
+                        </Button>
+                      )}
+                    </div>
                 </CardContent>
               </Card>
             </div>
           ))}
         </div>
 
-        {/* Project detail modal would go here */}
+        {/* Project detail modal */}
         {selectedProject && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div className="bg-gray-900 rounded-lg max-w-4xl w-full max-h-[80vh] overflow-y-auto">
@@ -183,7 +195,7 @@ const Projects = () => {
                 <p className="text-gray-300 leading-relaxed mb-6">
                   {selectedProject.longDescription}
                 </p>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <h4 className="text-white font-semibold mb-3">All Achievements:</h4>
                     <ul className="text-gray-300 space-y-2">
@@ -205,6 +217,28 @@ const Projects = () => {
                       ))}
                     </div>
                   </div>
+                </div>
+
+                <div className="pt-6 border-t border-gray-700 flex flex-wrap gap-3">
+                  {selectedProject.liveDemo && (
+                    <Button
+                      className="bg-gradient-to-r from-green-400 to-yellow-400 text-black hover:from-green-500 hover:to-yellow-500 font-semibold"
+                      onClick={() => window.open(selectedProject.liveDemo, '_blank')}
+                    >
+                      Visit Live Demo
+                      <ExternalLink className="ml-2 w-4 h-4" />
+                    </Button>
+                  )}
+                  {selectedProject.github && (
+                    <Button
+                      variant="outline"
+                      className="border-gray-600 text-gray-300 hover:border-green-400 hover:text-green-400 hover:bg-gray-800"
+                      onClick={() => window.open(selectedProject.github, '_blank')}
+                    >
+                      View GitHub Repository
+                      <Github className="ml-2 w-4 h-4" />
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>

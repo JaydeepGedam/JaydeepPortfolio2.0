@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Download } from 'lucide-react';
 import { Button } from './ui/button';
+import { personalInfo } from '../mock/portfolioData';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,7 +71,7 @@ const Header = () => {
             <Button
               variant="outline"
               className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black transition-all duration-300"
-              onClick={() => window.open('https://drive.google.com/file/d/18hl6PG6JQi2nqt5-A_R0L47NzD0rQeIq/view?usp=drive_link', '_blank')}
+              onClick={() => window.open(personalInfo.resume, '_blank')}
             >
               <Download className="w-4 h-4 mr-2" />
               Resume
@@ -103,7 +104,7 @@ const Header = () => {
                 <Button
                   variant="outline"
                   className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black w-full"
-                  onClick={() => window.open('https://drive.google.com/file/d/18hl6PG6JQi2nqt5-A_R0L47NzD0rQeIq/view?usp=sharing', '_blank')}
+                  onClick={() => window.open(personalInfo.resume, '_blank')}
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Resume

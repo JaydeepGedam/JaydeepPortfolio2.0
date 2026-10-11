@@ -4,8 +4,8 @@ export const personalInfo = {
   name: "JAYDEEP",
   lastName: "GEDAM",
   title: "< Frontend Developer />",
-  tagline: "Building accessible tech solutions with a patent to prove it",
-  description: "Passionate frontend developer with expertise in React, Next.js, and innovative assistive technologies. Patent holder for Nayaan - Smart Device for Visually Impaired.",
+  tagline: "Building intelligent AI applications, modern frontends, and accessible technology",
+  description: "Systems Engineer at TCS in the AI.cloud unit, contributing to GenAI applications and frontend engineering. Patent holder for Nayaan - Smart Device for Visually Impaired.",
   contact: {
     email: "jaydeep.gedam444@gmail.com",
     phone: "+91 9545176151",
@@ -13,12 +13,45 @@ export const personalInfo = {
     linkedin: "JaydeepGedam",
     github: "JaydeepGedam"
   },
-  resume: "https://drive.google.com/file/d/18hl6PG6JQi2nqt5-A_R0L47NzD0rQeIq/view?usp=drive_link"
+  resume: "https://drive.google.com/file/d/1j_DYNkxWGkqhwEOc18lyj5t3ml8LynLY/view?usp=sharing"
 };
 
 export const projects = [
   {
     id: 1,
+    title: "EpisodicAI - Cognitive Memory Infrastructure Platform",
+    subtitle: "LIVE • ENTERPRISE AI • FASTAPI • REACT • VECTOR DB",
+    description: "High-performance cognitive memory infrastructure for autonomous agents and conversational LLMs. Features autonomous memory extraction, 4-factor ranked retrieval, and intelligent conflict detection with per-user tenant isolation.",
+    longDescription: "EpisodicAI is a production-grade cognitive memory infrastructure platform designed to give autonomous AI agents and conversational LLMs human-like episodic recall and context retention. Built with a FastAPI backend and a responsive React + TypeScript frontend, EpisodicAI autonomously analyzes dialogue streams to extract structured facts, user preferences, and evolving goals. It implements a proprietary 4-factor ranked retrieval matrix that scores memories by semantic similarity (pgvector embeddings), importance, confidence, and mathematical half-life recency decay (30.0 days). In addition, EpisodicAI features intelligent contradiction detection that automatically flags conflicting facts as superseded and preserves explicit lineage pointers, all backed by strict JWT-based per-user tenant isolation.",
+    technologies: [
+      "FastAPI",
+      "Python",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "pgvector",
+      "OpenAI API",
+      "JWT Auth",
+      "Docker"
+    ],
+    achievements: [
+      "Engineered a 4-Factor Ranked Retrieval Matrix balancing semantic relevance (0.60), importance (0.20), confidence (0.10), and 30-day half-life recency decay (0.10).",
+      "Developed autonomous background memory extraction pipeline detecting facts, preferences, and goals from raw conversation.",
+      "Built semantic conflict resolution with automated superseding and lineage tracking pointers.",
+      "Architected strict per-user multi-tenant isolation with JWT authentication and an automated verification test suite."
+    ],
+    status: "Live",
+    category: "Full Stack",
+    featured: true,
+    images: [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop"
+    ],
+    liveDemo: "https://episodicai-frontend-three.vercel.app/"
+  },
+  {
+    id: 2,
     title: "Nayaan - Smart Device for Visually Impaired",
     subtitle: "PATENTED • LIVE • AWARD WINNING",
     description: "An innovative assistive device designed to help visually impaired individuals navigate their environment independently. Features OCR text reading, object detection, and natural language processing.",
@@ -41,11 +74,11 @@ export const projects = [
     liveDemo: "https://nayaan.vercel.app/"
   },
   {
-    id: 2,
-    title: "VibeCraft - AI Content Generator",
-    subtitle: "WEB APPLICATION • REACT • TYPESCRIPT",
-    description: "VibeCraft is an AI-powered content generation platform that lets users create, edit, and manage blog posts, marketing copy, and social media content from customizable prompts and templates.",
-    longDescription: "VibeCraft is a full-stack AI content creation web app built to help creators and marketers produce high-quality written content quickly. Users can register and log in, choose or create prompt templates, submit prompts to an AI provider, and receive editable drafts. Each generation is persisted with metadata (prompt, tone, length, timestamp) so users can revisit, edit, and export past outputs. The frontend is built with React + TypeScript and Vite for a fast, responsive single-page experience, styled with Tailwind CSS. The backend uses Node.js and Express with MongoDB (Mongoose) for persistence and modular routes (auth, content, user). Key responsibilities handled by the app include secure authentication, orchestration of generation requests to an AI provider, storage and versioning of generation history, and an editor-first UX for refining AI outputs.",
+    id: 3,
+    title: "VibeCraft - AI Content Generator & Scheduler",
+    subtitle: "AI SAAS • REACT • NODE.JS • LINKEDIN AUTOMATION",
+    description: "An AI content creation & scheduling platform that empowers creators to generate marketing copy, blog posts, and social media content, schedule posts with auto-publishing to LinkedIn, and manage custom API keys.",
+    longDescription: "VibeCraft is a full-stack AI content automation platform built to streamline the workflow for creators and digital marketers. Users can generate customized marketing copy and articles with adjustable tones, target audiences, and prompt templates powered by OpenAI. The platform includes an advanced automated scheduling engine that schedules drafts and automatically publishes them directly to LinkedIn via API integrations. It offers robust history tracking, content export in multiple formats (Markdown, PDF, text), and user settings for managing custom OpenAI API keys. Built with React + TypeScript and Vite on the frontend and Node.js + Express with MongoDB on the backend, deployed live on Render.",
     technologies: [
       "React",
       "TypeScript",
@@ -55,15 +88,15 @@ export const projects = [
       "Express",
       "MongoDB",
       "Mongoose",
-      "JWT (authentication)",
-      "AI provider (OpenAI)"
+      "LinkedIn API",
+      "Task Scheduler",
+      "OpenAI API"
     ],
     achievements: [
-      "Implemented secure user registration, login, and protected routes for generation and history.",
-      "Built a reusable prompt/template flow to produce consistent, repeatable AI outputs.",
-      "Persisted generated content and versioned history with Mongoose models for GeneratedContent, GeneratedHistory, and User.",
-      "Designed an editor-first, responsive UI using React + TypeScript and Tailwind CSS to speed editing and iteration.",
-      "Modular API design separating auth, content, and user concerns to improve maintainability and scalability."
+      "Implemented automated content scheduling engine with direct 1-click auto-publishing to LinkedIn.",
+      "Built target audience persona customization and user-level custom OpenAI API key management.",
+      "Created multi-format content export capabilities (Markdown, PDF, text) with instant downloads.",
+      "Designed an editor-first, responsive UI and deployed the full-stack architecture on Render with persistent history tracking."
     ],
     status: "Live",
     category: "Full Stack",
@@ -71,74 +104,36 @@ export const projects = [
     images: [
       "https://images.unsplash.com/photo-1554168155-48f6e3f7b7f9?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1526378723711-1f9d9b0c9a8a?w=800&h=600&fit=crop"
-    ]
-    ,
-    // Add a live demo URL (replace with the real deployment URL when available)
+    ],
     liveDemo: "https://vibecraft-frontend.onrender.com/"
-  },
-  {
-    id: 3,
-    title: "EKO - AI Twin Builder Platform",
-    subtitle: "LIVE • FULL STACK • AI-POWERED",
-    description: "A sophisticated web application that enables users to create their own AI Twin that mirrors their tone, thinking, and communication style through interactive training and chat capabilities.",
-    longDescription: "EKO is an innovative AI Twin Builder Platform that revolutionizes personal AI interaction by allowing users to create a digital counterpart that learns and adapts to their unique communication style. The platform features an intuitive onboarding process, interactive training modules where users can teach their AI twin through conversations, and a robust chat interface for real-time interactions. Built with modern web technologies, EKO leverages Supabase for backend services, authentication, and database management, ensuring scalability and security. The application includes beautiful 3D visualizations powered by React Three Fiber, smooth animations with Framer Motion, and a comprehensive component library using shadcn/ui for a polished user experience.",
-    technologies: [
-      "React",
-      "TypeScript",
-      "Vite",
-      "Supabase",
-      "Tailwind CSS",
-      "shadcn/ui",
-      "React Three Fiber",
-      "Framer Motion",
-      "Zustand",
-      "React Query",
-      "React Router",
-      "Recharts"
-    ],
-    achievements: [
-      "Built a complete AI twin training system with natural conversation flow",
-      "Implemented secure authentication and user management with Supabase",
-      "Designed responsive, modern UI with 3D visualizations and smooth animations",
-      "Created scalable state management architecture using Zustand",
-      "Deployed production-ready application with CI/CD pipeline on Render",
-      "Integrated real-time chat functionality with persistent conversation history"
-    ],
-    status: "Live",
-    category: "Full Stack",
-    featured: true,
-    images: [
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop"
-    ],
-    liveDemo: "https://eko-ai-twin.onrender.com/"
   }
 ];
 
 export const skills = {
   technical: [
     { name: "React.js", level: 90, category: "Frontend" },
-    { name: "Next.js", level: 85, category: "Frontend" },
-    { name: "JavaScript", level: 88, category: "Programming" },
-    { name: "HTML/CSS", level: 92, category: "Frontend" },
-    { name: "C++", level: 75, category: "Programming" },
-    { name: "Python", level: 70, category: "Programming" },
-    { name: "Tailwind CSS", level: 85, category: "Frontend" },
-    { name: "Git/GitHub", level: 80, category: "Tools" }
+    { name: "JavaScript", level: 88, category: "Frontend" },
+    { name: "Material UI & Tailwind", level: 88, category: "Frontend" },
+    { name: "Python / FastAPI", level: 82, category: "Backend" },
+    { name: "Prompt Engineering & LLMs", level: 85, category: "Generative AI" },
+    { name: "Azure AI Search", level: 80, category: "Cloud & AI" },
+    { name: "Selenium & pytest", level: 82, category: "Testing" },
+    { name: "Microsoft SQL Server", level: 78, category: "Database" },
+    { name: "Git/GitHub", level: 85, category: "Tools" }
   ],
   tools: [
-    { name: "Figma", level: 85, category: "Design" },
     { name: "VS Code", level: 90, category: "Development" },
-    { name: "OBS", level: 70, category: "Media" },
-    { name: "GitHub", level: 85, category: "Version Control" }
+    { name: "Microsoft Azure", level: 82, category: "Cloud" },
+    { name: "Azure DevOps", level: 78, category: "DevOps" },
+    { name: "Postman", level: 85, category: "API Testing" },
+    { name: "Figma", level: 80, category: "Design" }
   ],
   soft: [
-    "Leadership",
-    "Team Work",
-    "Communication",
-    "Management",
-    "Prompt Engineering",
     "Problem Solving",
+    "Team Collaboration",
+    "Prompt Engineering",
+    "Technical Communication",
+    "Continuous Learning",
     "Innovation"
   ]
 };
@@ -193,42 +188,101 @@ export const achievements = [
   }
 ];
 
+export const workExperience = [
+  {
+    id: 1,
+    title: "Systems Engineer",
+    company: "Tata Consultancy Services (TCS)",
+    shortName: "TCS (AI.cloud)",
+    unit: "AI.cloud",
+    project: "GenAI Test Studio",
+    duration: "Aug 2024 – Present",
+    periodBadge: "Aug 2024 – Present",
+    type: "Full-Time",
+    location: "India",
+    featured: true,
+    description: "Contributing to GenAI application development and frontend engineering on GenAI Test Studio—building React interfaces, integrating backend APIs, and implementing automated testing workflows.",
+    highlights: [
+      "Engineered frontend interfaces using React.js, Material UI, and Tailwind CSS for test suite management and analytics dashboards.",
+      "Integrated components with Python/FastAPI backend services, SQL Server, and authentication via MSAL / Azure AD.",
+      "Automated UI test flows using Selenium and pytest; explored AI-assisted testing via Playwright MCP (POC)."
+    ],
+    skills: [
+      "React.js",
+      "FastAPI / Python",
+      "Material UI & Tailwind",
+      "Azure AI Search",
+      "Prompt Engineering",
+      "Selenium & pytest",
+      "Playwright MCP (POC)",
+      "Azure AD / MSAL"
+    ]
+  }
+];
+
 export const internships = [
   {
+    id: 2,
     title: "Persistent Martian Internship",
     company: "Persistent Systems",
+    shortName: "Persistent Systems",
     duration: "7-week virtual internship",
-    description: "Completed comprehensive virtual internship program focusing on software development practices and emerging technologies.",
+    periodBadge: "7 Weeks",
+    type: "Internship",
+    description: "Completed comprehensive virtual internship program focusing on software development practices, computer science foundations, and emerging technologies.",
+    highlights: [
+      "Completed structured training in software engineering best practices, data structures, and algorithms.",
+      "Engaged in hands-on practical problem-solving modules and technical assessments.",
+      "Earned certificate of completion for emerging software engineering concepts."
+    ],
+    skills: ["Software Engineering", "Core Java", "Data Structures", "Algorithms"],
     certificate: true,
     certificateUrl: "https://drive.google.com/file/d/13VtycfuY8KCB5tE0reanM1bfWZOdXlfl/view"
   },
   {
+    id: 3,
     title: "Web Development using Python Django",
     company: "Bitlance Tech Hub Pvt. Ltd.",
+    shortName: "Bitlance Tech Hub",
     duration: "3 months internship",
-    description: "Gained hands-on experience in web development using Python Django framework, working on real-world projects.",
+    periodBadge: "3 Months",
+    type: "Internship",
+    description: "Gained hands-on experience in web development using Python Django framework, working on backend modules and database-driven features.",
+    highlights: [
+      "Built server-side web features and RESTful endpoints using Python and Django.",
+      "Designed and integrated relational database schemas with SQLite.",
+      "Collaborated on debugging and deploying feature modules for real-world projects."
+    ],
+    skills: ["Python", "Django", "REST APIs", "SQLite", "Web Development"],
     certificate: true,
     certificateUrl: "https://drive.google.com/file/d/1PeR2OJWrQnhZ-gefH5PVIa8FP5iUof_y/view"
   }
 ];
 
+export const experiences = [
+  ...workExperience,
+  ...internships
+];
+
 // Mock chatbot responses
 export const chatbotData = {
   greetings: [
-    "Hi there! I'm Jaydeep's AI assistant. I can tell you all about his projects, skills, and achievements! What would you like to know?",
-    "Hello! Welcome to Jaydeep's portfolio. I'm here to help you learn more about his work and experience. How can I assist you?",
-    "Hey! I'm here to share everything about Jaydeep - from his patent-winning Nayaan project to his latest web developments. What interests you?"
+    "Hi there! I'm Jaydeep's AI assistant. I can tell you all about his projects, skills, experience at TCS AI.cloud, and achievements! What would you like to know?",
+    "Hello! Welcome to Jaydeep's portfolio. I'm here to help you learn more about his work as a Systems Engineer at TCS and his latest AI projects. How can I assist you?",
+    "Hey! I'm here to share everything about Jaydeep - from his patent-winning Nayaan project and EpisodicAI platform to his work in TCS AI.cloud. What interests you?"
   ],
   responses: {
-    projects: "Jaydeep has worked on some amazing projects! His most notable is Nayaan - a patented smart device for visually impaired people. He's also built NextBMS (a business management solution) and GroceryMate (an e-commerce platform). Which project would you like to know more about?",
-    nayaan: "Nayaan is Jaydeep's flagship project - a smart assistive device for visually impaired individuals. It's patented (Application No: 202321065172), has a published research paper in Springer Journal, and won 1st Runner Up at BharatCon24! The device uses PaddleOCR, AI/ML, and NLP to help users navigate independently. It's currently live and helping real users!",
-    skills: "Jaydeep is proficient in React.js (90%), Next.js (85%), JavaScript (88%), and HTML/CSS (92%). He also knows C++, Python, and uses tools like Figma, VS Code, and GitHub. His soft skills include leadership, communication, and innovation - which clearly show in his patent-winning work!",
-    achievements: "Jaydeep has some incredible achievements! He holds a patent, published a research paper in Springer Journal, won 1st Runner Up at BharatCon24, was selected for top 100 projects at CIIA-3 exhibition in Mumbai, and won a district-level innovation challenge. Pretty impressive for a frontend developer, right?",
-    education: "Jaydeep graduated with a Bachelor's in Information Technology from Government College of Engineering, Amravati with an excellent CGPA of 8.66. He also has a Diploma in Computer Science with 96.58% from Government Polytechnic, Amravati. Strong academic foundation!",
-    contact: "You can reach Jaydeep at jaydeep.gedam444@gmail.com or call him at +91 9545176151. He's also active on LinkedIn and GitHub as 'JaydeepGedam'. He's based in Amravati, Maharashtra, India.",
-    experience: "Jaydeep has completed internships at Persistent Systems (7-week Martian program) and Bitlance Tech Hub (3-month Django development). He's worked extensively on frontend development, AI/ML integration, and has hands-on experience with real-world projects that solve actual problems."
+    projects: "Jaydeep has built notable projects:\n1. **EpisodicAI**: Cognitive memory infrastructure for AI agents with 4-factor ranked retrieval.\n2. **Nayaan**: A patented smart assistive device for visually impaired individuals (App: 202321065172).\n3. **VibeCraft**: An AI content platform with automated LinkedIn scheduling and custom key management.\nWhich one would you like to explore deeper?",
+    nayaan: "Nayaan is Jaydeep's flagship patented project (Application No: 202321065172) - a smart assistive device for visually impaired individuals. It has a published research paper in Springer Journal, won 1st Runner Up at BharatCon24, and was selected for CIIA-3 exhibition in Mumbai! It uses PaddleOCR, AI/ML, and NLP to help users navigate independently.",
+    episodicai: "EpisodicAI is Jaydeep's cognitive memory infrastructure platform for AI applications. It gives AI agents persistent memory via autonomous fact extraction from chat dialogues, a 4-factor ranked retrieval matrix (semantic, importance, confidence, and recency decay), and intelligent conflict resolution with strict per-user tenant isolation.",
+    vibecraft: "VibeCraft is an AI-powered content generation and marketing automation platform built by Jaydeep. It includes an automated scheduling engine that auto-publishes content directly to LinkedIn, target audience persona customization, and custom OpenAI API key management.",
+    skills: "Jaydeep's skills include React.js, JavaScript, Material UI, Tailwind CSS, Python, FastAPI, Azure AI Search, Prompt Engineering, Selenium WebDriver, pytest, Playwright MCP (POC), MSAL/Azure AD, and SQL Server.",
+    achievements: "Jaydeep holds a published patent for Nayaan, published research in a Springer Journal, won 1st Runner Up at BharatCon24, was selected for the top 100 projects at CIIA-3 Mumbai, and won district-level student innovation challenges.",
+    education: "Jaydeep graduated with a Bachelor's in Information Technology from Government College of Engineering, Amravati (CGPA: 8.66). He also completed his Diploma in Computer Science & Engineering with 96.58% from Government Polytechnic, Amravati.",
+    contact: "You can reach Jaydeep at jaydeep.gedam444@gmail.com or call him at +91 9545176151. He is also active on LinkedIn (JaydeepGedam) and GitHub (JaydeepGedam).",
+    experience: "Jaydeep is a Systems Engineer at Tata Consultancy Services (TCS) in the AI.cloud unit (since Aug 2024). He contributes to GenAI applications, primarily working on GenAI Test Studio—building React frontend interfaces, integrating with Python/FastAPI services, Azure AD authentication, and automated testing with Selenium, pytest, and a Playwright MCP proof-of-concept."
   },
-  fallback: "That's an interesting question! While I have comprehensive information about Jaydeep's projects, skills, and achievements, I might not have specific details about that. You can always contact Jaydeep directly at jaydeep.gedam444@gmail.com for more personalized answers!"
+  fallback: "That's an interesting question! While I have comprehensive information about Jaydeep's work at TCS AI.cloud, EpisodicAI, Nayaan, skills, and achievements, you can always connect with Jaydeep directly at jaydeep.gedam444@gmail.com!"
 };
 
 export const testimonials = [
@@ -251,3 +305,4 @@ export const testimonials = [
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
   }
 ];
+
